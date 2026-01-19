@@ -6,7 +6,7 @@ define('API_PATH', BASE_PATH . '/api');
 ob_start();
 
 // CORS Headers
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://cmms-api-n1e7.onrender.com');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
