@@ -1,0 +1,43 @@
+<?php
+
+// اعرض كل الأخطاء
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+echo json_encode([
+    'step' => 'start',
+    'php_version' => phpversion(),
+]);
+
+require_once __DIR__ . '/../config/config.php';
+
+echo json_encode([
+    'step' => 'config_loaded'
+]);
+
+try {
+    $dbConfig = require __DIR__ . '/../config/database.php';
+
+    $dsn = "mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']};charset={$dbConfig['charset']}";
+
+    $pdo = new PDO(
+        $dsn,
+        $dbConfig['username'],
+        $dbConfig['password'],
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_TIMEOUT => 5,
+        ]
+    );
+
+    echo json_encode([
+        'step' => 'db_connected',
+        'status' => 'success'
+    ]);
+
+} catch (Throwable $e) {
+    echo json_encode([
+        'step' => 'db_failed',
+        'error' => $e->getMessage(),
+    ]);
+}
