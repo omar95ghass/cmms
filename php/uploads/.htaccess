@@ -1,0 +1,7 @@
+# Deny direct access to uploaded files
+# Files should be accessed through API only
+
+<FilesMatch "\.(jpg|jpeg|png|gif|pdf)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>

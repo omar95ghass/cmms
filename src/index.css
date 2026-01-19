@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-medical-border;
+  }
+  
+  body {
+    @apply bg-medical-light text-medical-text font-sans;
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+  }
+  
+  [dir="ltr"] body {
+    font-family: 'Inter', 'system-ui', sans-serif;
+  }
+  
+  [dir="rtl"] body {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+  }
+}
+
+@layer components {
+  .crystal-card {
+    @apply bg-medical-card rounded-xl shadow-sm border border-medical-border p-6;
+  }
+  
+  .crystal-card-elevated {
+    @apply crystal-card shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+  
+  .crystal-input {
+    @apply w-full px-4 py-2 border border-medical-border rounded-lg 
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           transition-all duration-200;
+  }
+  
+  .crystal-button {
+    @apply px-6 py-2 rounded-lg font-medium transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .crystal-button-primary {
+    @apply crystal-button bg-primary-600 text-white hover:bg-primary-700
+           focus:ring-primary-500 shadow-sm hover:shadow-md;
+  }
+  
+  .crystal-button-secondary {
+    @apply crystal-button bg-medical-card border border-medical-border text-medical-text
+           hover:bg-medical-light focus:ring-primary-500;
+  }
+  
+  .brand-gradient {
+    @apply bg-gradient-to-br from-primary-50 via-white to-medical-light;
+  }
+  
+  .brand-accent {
+    @apply text-primary-600;
+  }
+}
+
+/* Print Styles for A4 */
+@page {
+  size: A4;
+  margin: 1cm;
+}
+
+@media print {
+  /* Hide all elements except print-specific content */
+  body * {
+    visibility: hidden;
+  }
+
+  .print-content,
+  .print-content * {
+    visibility: visible;
+  }
+
+  .print-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .print\\:hidden,
+  nav,
+  aside,
+  .print\\:hidden * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .print\\:block {
+    display: block !important;
+  }
+
+  .print\\:border {
+    border: 1px solid #e5e7eb !important;
+  }
+
+  .print\\:border-0 {
+    border: none !important;
+  }
+
+  .print\\:shadow-none {
+    box-shadow: none !important;
+  }
+
+  .print\\:break-inside-avoid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .crystal-card {
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+    page-break-inside: avoid;
+  }
+
+  a,
+  button,
+  .print-hide {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .print-header {
+    page-break-after: avoid;
+    margin-bottom: 1rem;
+  }
+
+  .print-footer {
+    page-break-before: avoid;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  /* Ensure tables don't break across pages */
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+}
