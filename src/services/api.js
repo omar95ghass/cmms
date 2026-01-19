@@ -6,7 +6,8 @@ const getBaseURL = () => {
   if (import.meta.env.DEV) {
     return '/api';
   }
-  // In production, use full URL or relative path
+  // In production, use environment variable or fallback to relative path
+  // VITE_API_URL should be set to your backend URL (e.g., https://api.yoursite.com/api)
   return import.meta.env.VITE_API_URL || '/api';
 };
 
